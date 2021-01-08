@@ -12,7 +12,10 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    #render plain: params[:article]
+    #render plain: params[:article] - to see params from FE
+    @article = Article.new(params.require(:article).permit(:title, :description))
+    @article.save
+    redirect_to article_path(@article) #The shorthand redirect_to @article
   end
 
 end
