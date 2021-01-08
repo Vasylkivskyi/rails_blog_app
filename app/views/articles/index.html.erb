@@ -1,9 +1,19 @@
 <h1>Articles list</h1>
-<ul>
-  <% @articles.each do |article_record| %>
-    <li>
-      <h3><strong>Title: </strong><%= article_record.title %></h3>
-      <p><strong>Description: </strong><%= article_record.description %></p>
-    </li>
-  <% end %>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @articles.each do |article_record| %>
+      <tr>
+      <td><%= article_record.title %></td>
+      <td><%= article_record.description %></td>
+      <td>action</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
