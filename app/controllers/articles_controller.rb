@@ -19,7 +19,8 @@ class ArticlesController < ApplicationController
 
   def create
     #render plain: params[:article] - to see params from FE
-    @article = Article.new(article_params)
+    @article = Article.new(params)
+    @article.user = User.first #temp solution
     if @article.save
       flash[:notice] = "Article was created successfully."
       redirect_to article_path(@article) #The shorthand redirect_to @article
