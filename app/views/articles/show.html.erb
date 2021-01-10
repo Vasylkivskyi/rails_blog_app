@@ -1,40 +1,37 @@
-<div id="page-content">
-  <h1 class="text-center mt-4">Article page</h1>
-  <div class="container">
-    <div class="row justify-content-md-center">
-      <div class="col-md-8 col-md-12 ">
-        <div class="card shadow">
-          <div class="card-header">
-            <small>by Pavlo Vasylkivskyi</small>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title"><%=@article.title%></h5>
-            <div class="card-text"><%= simple_format(@article.description) %></div>
-          </div>
-          <div class="card-footer text-muted">
-            <small>
-              Created
-              <%= time_ago_in_words(@article.created_at) %>
-              ago
-              <% if @article.created_at != @article.updated_at%>
-              & edited
-              <%= time_ago_in_words(@article.updated_at) %>
-              ago
-              <% end %>
-            </small>
-          </div>
+<h1 class="text-center mt-4"><%=@article.title%></h1>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-md-8 col-sm-12 ">
+      <div class="card shadow">
+        <div class="card-header">
+          <small>by Pavlo Vasylkivskyi</small>
         </div>
-        <div class="col-md-8 col-md-12 bg-white  shadow mt-3 p-3 rounded">
-          <%= link_to "Articles list", articles_path, class: "btn btn-outline-success"%>
-          <%= link_to "Edit", edit_article_path(@article), class: "btn btn-outline-primary"%>
-          <%=
+        <div class="card-body">
+          <div class="card-text"><%= simple_format(@article.description) %></div>
+        </div>
+        <div class="card-footer text-muted">
+          <small>
+            Created
+            <%= time_ago_in_words(@article.created_at) %>
+            ago
+            <% if @article.created_at != @article.updated_at%>
+            & edited
+            <%= time_ago_in_words(@article.updated_at) %>
+            ago
+            <% end %>
+          </small>
+        </div>
+      </div>
+      <div class="col-md-8 col-md-12 bg-white  shadow mt-3 mb-3 p-3 rounded">
+        <%= link_to "Articles list", articles_path, class: "btn btn-outline-success"%>
+        <%= link_to "Edit", edit_article_path(@article), class: "btn btn-outline-primary"%>
+        <%=
               link_to "Delete",
               article_path(@article),
               method: :delete,
               class: "btn btn-outline-danger",
               data: { confirm: "Are you sure?" }
             %>
-        </div>
       </div>
     </div>
   </div>

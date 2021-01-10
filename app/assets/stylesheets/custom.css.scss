@@ -1,5 +1,6 @@
-@import 'bootstrap/dist/css/bootstrap';
-html, body {
+@import "bootstrap/dist/css/bootstrap";
+html,
+body {
   height: 100%;
 }
 
@@ -8,9 +9,6 @@ html, body {
     color: coral;
     font-weight: bold;
   }
-}
-.messages-container {
-  background: lightgray;
 }
 
 #page-content {
@@ -23,13 +21,12 @@ html, body {
 }
 
 .jumbotron {
-  background-image: asset-url('jumbo.jpg');
+  background-image: asset-url("jumbo.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: 550px;
+  min-height: 500px;
   text-shadow: 1px 2px 2px black;
-
   p {
     font-size: 20px;
   }
