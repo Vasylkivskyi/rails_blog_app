@@ -4,6 +4,17 @@ class UsersController < ApplicationController
   end
 
   def create
-    redirect_to articles_path
+    @user = User.new(user_params)
+    if @user.save
+      flash[:notice] = "Welcome to Rails Blog, #{@user.user_name}! 🥰 You have successfully signup!"
+      redirect_to articles_path
+    else
+      render 'new'
+    end
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:user_name, :email, :password)
   end
 end
