@@ -4,8 +4,9 @@
     <div class="col-md-8 col-sm-12 ">
       <div class="card shadow">
         <div class="card-header text-center">
-          <small>by <%= @article.user.user_name%></small>
-          <%= link_to  gravatar_for(@article.user, size: 50), article_path(@article.user) %>
+          <small>by
+            <%= @article.user.user_name%></small>
+          <%= link_to gravatar_for(@article.user, size: 50), article_path(@article.user) %>
         </div>
         <div class="card-body">
           <div class="card-text"><%= simple_format(@article.description) %></div>
@@ -16,9 +17,9 @@
             <%= time_ago_in_words(@article.created_at) %>
             ago
             <% if @article.created_at != @article.updated_at%>
-            & edited
-            <%= time_ago_in_words(@article.updated_at) %>
-            ago
+              & edited
+              <%= time_ago_in_words(@article.updated_at) %>
+              ago
             <% end %>
           </small>
         </div>
@@ -26,13 +27,7 @@
       <div class="col-md-8 col-md-12 bg-white  shadow mt-3 mb-3 p-3 rounded">
         <%= link_to "Articles list", articles_path, class: "btn btn-outline-success"%>
         <%= link_to "Edit", edit_article_path(@article), class: "btn btn-outline-primary"%>
-        <%=
-              link_to "Delete",
-              article_path(@article),
-              method: :delete,
-              class: "btn btn-outline-danger",
-              data: { confirm: "Are you sure?" }
-            %>
+        <%= link_to "Delete", article_path(@article), method: :delete, class: "btn btn-outline-danger", data: { confirm: "Are you sure?" } %>
       </div>
     </div>
   </div>

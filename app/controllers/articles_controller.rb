@@ -1,29 +1,25 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: %i[show edit update destroy]
 
   def index
     @articles = Article.paginate(page: params[:page], per_page: 8)
   end
 
-  def show
-
-  end
+  def show; end
 
   def new
     @article = Article.new
   end
 
-  def edit
-
-  end
+  def edit; end
 
   def create
-    #render plain: params[:article] - to see params from FE
+    # render plain: params[:article] - to see params from FE
     @article = Article.new(article_params)
-    @article.user = User.last #temp solution
+    @article.user = User.last # temp solution
     if @article.save
-      flash[:notice] = "Article was created successfully."
-      redirect_to article_path(@article) #The shorthand redirect_to @article
+      flash[:notice] = 'Article was created successfully.'
+      redirect_to article_path(@article) # The shorthand redirect_to @article
     else
       render 'new'
     end
@@ -31,7 +27,7 @@ class ArticlesController < ApplicationController
 
   def update
     if @article.update(article_params)
-      flash[:notice] = "Article was updated successfully"
+      flash[:notice] = 'Article was updated successfully'
       redirect_to @article
     else
       render 'edit'
@@ -40,7 +36,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article.destroy
-    flash[:notice] = "Article was deleted successfully"
+    flash[:notice] = 'Article was deleted successfully'
     redirect_to articles_path
   end
 
@@ -53,5 +49,4 @@ class ArticlesController < ApplicationController
   def article_params
     params.require(:article).permit(:title, :description)
   end
-
 end

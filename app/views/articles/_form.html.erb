@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row justify-content-md-center">
-  <%= render "shared/errors", obj: @article %>
+    <%= render "shared/errors", obj: @article %>
     <%= form_with(model: @article, class: "col-md-8 col-sm-12 shadow mb-3 bg-white rounded p-4", local: true) do |f| %>
     <div class="form-group row">
       <%= f.label :title %>
@@ -13,9 +13,9 @@
     <div class="form-group row">
       <%= f.submit class: "btn btn-success" %>
     </div>
-    <% end %>
-  </div>
-  <div class="row justify-content-md-center">
-    <%= link_to  "[ Articles list ]", articles_path %>
-  </div>
+  <% end %>
+</div>
+<div class="row justify-content-md-center">
+  <%= link_to "[ Articles list ]", articles_path %>
+</div>
 </div>
