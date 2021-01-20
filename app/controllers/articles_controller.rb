@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[show edit update destroy]
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :require_user, except: [:index, :show]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def index
     @articles = Article.paginate(page: params[:page], per_page: 8)
@@ -11,12 +13,12 @@ class ArticlesController < ApplicationController
     @article = Article.new
   end
 
-  def edit; end
+  def edit;  end
 
   def create
     # render plain: params[:article] - to see params from FE
     @article = Article.new(article_params)
-    @article.user = User.last # temp solution
+    @article.user = current_user # temp solution
     if @article.save
       flash[:notice] = 'Article was created successfully.'
       redirect_to article_path(@article) # The shorthand redirect_to @article
@@ -48,5 +50,12 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title, :description)
+  end
+
+  def require_same_user
+    if current_user != @article.user
+      flash[:alert] = "You are not authorized 🤮"
+      redirect_to @article
+    end
   end
 end
