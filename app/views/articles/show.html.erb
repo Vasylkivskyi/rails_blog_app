@@ -26,7 +26,7 @@
       </div>
       <div class="col-md-8 col-md-12 bg-white  shadow mt-3 mb-3 p-3 rounded">
         <%= link_to "Articles list", articles_path, class: "btn btn-outline-success"%>
-        <% if logged_in? && @article.user == current_user %>
+        <% if logged_in? && (@article.user == current_user || current_user.admin?) %>
           <%= link_to "Edit", edit_article_path(@article), class: "btn btn-outline-primary"%>
           <%= link_to "Delete", article_path(@article), method: :delete, class: "btn btn-outline-danger", data: { confirm: "Are you sure?" } %>
         <% end %>

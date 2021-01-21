@@ -53,7 +53,7 @@ class ArticlesController < ApplicationController
   end
 
   def require_same_user
-    if current_user != @article.user
+    if !current_user.admin? && current_user != @article.user
       flash[:alert] = "You are not authorized 🤮"
       redirect_to @article
     end
